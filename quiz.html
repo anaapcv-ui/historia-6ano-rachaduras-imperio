@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quiz — História 6º ano | Rachaduras do Império</title>
+<style>
+/* ===== RACHADURAS DO IMPÉRIO — tema do kit de História 6º ano ===== */
+:root{
+  --fundo:#14110d; --fundo2:#1e1912; --painel:#28211a; --painel2:#332a20;
+  --linha:#4d4132; --ocre:#c69a44; --ocre2:#e6c274;
+  --ciano:#4bb39e; --ambar:#e8b23a; --verde:#4a9d6a; --vermelho:#d0564c;
+  --texto:#f0e9df; --texto2:#b6a894;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--fundo);color:var(--texto);
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,sans-serif;
+  font-size:18px;line-height:1.65;
+  background-image:
+    linear-gradient(180deg,#14110d 0%,#1a1610 45%,#100d09 100%),
+    repeating-linear-gradient(58deg,rgba(198,154,68,.03) 0 1px,transparent 1px 11px);
+  background-attachment:fixed;
+}
+.wrap{max-width:980px;margin:0 auto;padding:0 18px 80px}
+header.topo{padding:26px 0 14px;border-bottom:3px solid var(--ocre);position:relative}
+header.topo::after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:6px;
+  background:repeating-linear-gradient(90deg,var(--ocre) 0 14px,transparent 14px 22px);opacity:.45}
+.titulo{font-size:clamp(26px,5.6vw,44px);line-height:1.1;margin:0;font-weight:800;letter-spacing:-.01em}
+.titulo .sub{display:block;font-size:.36em;font-weight:500;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--ocre2);margin-bottom:10px}
+.faixa{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:14px;font-size:13px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--texto2)}
+.selo{display:inline-block;background:var(--ciano);color:#062822;font-weight:700;
+  font-size:12.5px;letter-spacing:.14em;padding:6px 13px;border-radius:3px;text-transform:uppercase;margin-top:16px}
+.selo.ocre{background:var(--ocre);color:#231202}
+nav.abas{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 6px}
+nav.abas a{font-size:13.5px;letter-spacing:.04em;text-decoration:none;color:var(--texto);
+  border:1px solid var(--linha);background:var(--painel);padding:9px 14px;border-radius:4px;transition:.15s}
+nav.abas a.atual{background:var(--ciano);color:#062822;border-color:var(--ciano);font-weight:700}
+nav.abas a:hover{background:var(--painel2);border-color:var(--ciano)}
+nav.abas a.atual:hover{background:var(--ciano)}
+.painel{border:1px solid var(--linha);background:var(--painel);padding:12px 14px;margin:18px 0 24px;
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border-radius:5px}
+.painel .status{font-size:13px;color:var(--texto2)}
+.painel .btns{display:flex;gap:7px;flex-wrap:wrap}
+button{font-family:inherit;font-size:13.5px;cursor:pointer;border:1px solid var(--linha);
+  background:var(--painel2);color:var(--texto);padding:9px 14px;border-radius:4px;transition:.15s}
+button:hover{background:var(--linha)}
+button.principal{background:var(--verde);color:#04180d;border-color:var(--verde);font-weight:700}
+button.principal:hover{background:#5bb87e}
+button.ocre{background:var(--ocre);color:#231202;border-color:var(--ocre);font-weight:700}
+button.ocre:hover{background:var(--ocre2)}
+.progresso{margin:0 0 26px}
+.barra{height:15px;border:1px solid var(--linha);background:var(--fundo2);border-radius:8px;overflow:hidden}
+.barra i{display:block;height:100%;width:0;transition:width .45s;background:linear-gradient(90deg,var(--vermelho),var(--ocre))}
+.progresso p{font-size:13px;margin:7px 0 0;color:var(--texto2)}
+h2{font-size:26px;line-height:1.25;margin:0}
+p{margin:0 0 14px}
+a{color:var(--ciano)}
+.aviso-caixa{border:1px solid var(--linha);background:var(--painel);padding:13px 16px;border-radius:5px;font-size:15.5px}
+.aviso{font-size:13.5px;color:var(--ambar);margin:0 0 10px;min-height:16px}
+.questao{border:1px solid var(--linha);background:var(--fundo2);border-radius:6px;padding:17px 19px;margin:0 0 18px}
+.questao .qnum{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#231202;
+  background:var(--ocre);padding:4px 10px;border-radius:3px;font-weight:700;display:inline-block;margin-bottom:10px}
+.enunciado{font-size:17px;margin:0 0 13px;font-weight:600;line-height:1.55}
+.alts{display:flex;flex-direction:column;gap:8px}
+.alt{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--linha);background:var(--painel);
+  padding:11px 14px;border-radius:5px;cursor:pointer;transition:.13s;font-size:16px;line-height:1.5;text-align:left;width:100%;color:var(--texto)}
+.alt:hover{border-color:var(--ciano);background:var(--painel2)}
+.alt .letra{font-weight:800;color:var(--ocre2);flex-shrink:0;min-width:20px}
+.alt.marcada{border-color:var(--ciano);background:rgba(75,179,158,.16)}
+.alt.certa{border-color:var(--verde);background:rgba(74,157,106,.2)}
+.alt.errada{border-color:#4a4033;background:rgba(150,140,120,.1);opacity:.85}
+.alt.errada .letra{color:var(--texto2)}
+.coment{font-size:14.5px;margin:7px 0 0;padding-left:31px;color:var(--texto2);line-height:1.5}
+.coment.ok{color:#8fe0ae}
+.placar{border:2px solid var(--ciano);background:var(--painel);border-radius:7px;padding:20px 22px;margin:24px 0}
+.placar .nota{font-size:44px;font-weight:800;color:var(--ciano);line-height:1}
+.codigo{font-family:'Courier New',monospace;font-size:26px;letter-spacing:.16em;font-weight:700;
+  color:var(--ambar);background:var(--fundo);border:2px dashed var(--ambar);padding:12px 18px;border-radius:5px;display:inline-block;margin:10px 0}
+.entrada-cod{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:14px 0 0}
+input[type=text]{font-family:'Courier New',monospace;font-size:17px;letter-spacing:.1em;padding:10px 13px;
+  border:1px solid var(--linha);background:#0f0c08;color:var(--texto);border-radius:4px;width:190px;text-transform:uppercase}
+input[type=text]:focus{outline:2px solid var(--ciano);outline-offset:1px}
+.overlay{position:fixed;inset:0;background:rgba(8,6,4,.8);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.overlay.on{display:flex}
+.modal{background:var(--painel);border:2px solid var(--ocre);max-width:440px;width:100%;padding:23px;border-radius:7px}
+.modal h3{margin:0 0 10px;font-size:21px;color:var(--ocre2)}
+.modal p{margin:0 0 17px}
+.modal .acoes{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.rodape{border-top:3px solid var(--ocre);margin-top:34px;padding-top:17px;display:flex;flex-wrap:wrap;
+  gap:12px;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--texto2)}
+.rodape a{color:var(--texto);text-decoration:none;border:1px solid var(--linha);background:var(--painel);
+  padding:10px 16px;border-radius:4px;letter-spacing:.05em}
+.rodape a:hover{background:var(--ciano);color:#062822;border-color:var(--ciano)}
+@media(max-width:620px){body{font-size:17px}.wrap{padding:0 14px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="topo">
+  <h1 class="titulo"><span class="sub">Rachaduras do Império</span>Quiz — 15 questões</h1>
+  <div class="faixa">
+    <span>Colégio São José</span>
+    <span>6º ano · História</span>
+    <span>Crise e fim do Império Romano</span>
+    <span>15 questões objetivas</span>
+  </div>
+  <p style="margin:0"><span class="selo ocre">Rachadura 2 de 4 — testando o que ficou</span></p>
+</header>
+
+<nav class="abas">
+  <a href="leitura-guiada.html">📖 1. Leitura Guiada</a>
+  <a href="quiz.html" class="atual">🎯 2. Quiz</a>
+  <a href="resumo.html">🗺️ 3. Resumo</a>
+  <a href="simulado.html">📝 4. Simulado</a>
+  <a href="index.html">🏠 Início</a>
+</nav>
+
+<div class="painel">
+  <div class="status" id="status">Carregando seu progresso…</div>
+  <div class="btns">
+    <button id="btExportar">📥 Exportar</button>
+    <button id="btImportar">📤 Importar</button>
+    <button id="btZerar">🗑️ Zerar tudo</button>
+  </div>
+</div>
+<input type="file" id="arquivo" accept="application/json" style="display:none">
+
+<div class="progresso">
+  <div class="barra"><i id="barra"></i></div>
+  <p id="txtProg">0 de 15 respondidas.</p>
+</div>
+
+<p class="aviso-caixa">
+<b>Como funciona:</b> são 15 questões objetivas sobre a queda de Roma. Marque uma alternativa em cada uma
+e clique em <b>Corrigir tudo</b> no fim. Você vai receber uma nota e um <b>código de liberação</b> —
+é com ele que o gabarito comentado abre. Enquanto não corrigir, dá para trocar de resposta à vontade.
+</p>
+
+<div id="questoes"></div>
+
+<div style="margin:24px 0">
+  <button class="principal" id="btCorrigir" style="font-size:17px;padding:14px 26px">✔️ Corrigir tudo</button>
+</div>
+
+<div id="resultado"></div>
+
+<div class="rodape">
+  <span>Próximo material da sequência →</span>
+  <a href="resumo.html">🗺️ Ir para o Resumo</a>
+</div>
+
+</div>
+
+<script>
+/* ===== MOTOR COMPARTILHADO — Quiz e Simulado | Rachaduras do Império =====
+   Embaralhamento com semente fixa (mulberry32): a ordem é sempre a mesma em
+   toda abertura, porque as respostas ficam salvas. A alternativa correta é
+   guardada pelo OBJETO, nunca pela posição — por isso o gabarito não desalinha. */
+function mulberry32(a){
+  return function(){
+    a|=0; a=a+0x6D2B79F5|0;
+    var t=Math.imul(a^a>>>15,1|a);
+    t=t+Math.imul(t^t>>>7,61|t)^t;
+    return ((t^t>>>14)>>>0)/4294967296;
+  };
+}
+function prepararQuestoes(lista,semente){
+  lista.forEach(function(q,i){
+    var correta=q.alts[0];
+    var arr=q.alts.slice();
+    var rnd=mulberry32(semente+i*7919);
+    for(var k=arr.length-1;k>0;k--){
+      var j=Math.floor(rnd()*(k+1));
+      var tmp=arr[k]; arr[k]=arr[j]; arr[j]=tmp;
+    }
+    q.ordem=arr;
+    q.certa=arr.indexOf(correta);
+  });
+  return lista;
+}
+var LETRAS=['a','b','c','d'];
+function gerarCodigo(prefixo,acertos,chaveLS){
+  var salvo=null;
+  try{salvo=localStorage.getItem(chaveLS);}catch(e){}
+  if(salvo&&salvo.indexOf(prefixo+'-'+pad2(acertos)+'-')===0)return salvo;
+  var abc='ABCDEFGHJKLMNPQRSTUVWXYZ';
+  var yy=abc[Math.floor(Math.random()*abc.length)]+abc[Math.floor(Math.random()*abc.length)];
+  var cod=prefixo+'-'+pad2(acertos)+'-'+yy;
+  try{localStorage.setItem(chaveLS,cod);}catch(e){}
+  return cod;
+}
+function pad2(n){return (n<10?'0':'')+n;}
+function criarStore(KEY,vazio){
+  var mem=JSON.parse(JSON.stringify(vazio));
+  return {
+    ler:function(){
+      try{return JSON.parse(localStorage.getItem(KEY)||'null')||JSON.parse(JSON.stringify(vazio));}
+      catch(e){return mem;}
+    },
+    gravar:function(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){mem=s;}},
+    limpar:function(){try{localStorage.removeItem(KEY);}catch(e){}mem=JSON.parse(JSON.stringify(vazio));}
+  };
+}
+function agoraBR(){
+  var d=new Date();
+  return d.toLocaleDateString('pt-BR')+' às '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+}
+function montarModal(){
+  if(document.getElementById('overlay'))return;
+  var d=document.createElement('div');
+  d.className='overlay'; d.id='overlay';
+  d.innerHTML='<div class="modal"><h3 id="mTit">Aviso</h3><p id="mTxt"></p>'+
+    '<div class="acoes"><button id="mNao" style="display:none">Cancelar</button>'+
+    '<button class="principal" id="mSim">Entendi</button></div></div>';
+  document.body.appendChild(d);
+}
+function aviso(t,msg,onSim,comCancelar){
+  montarModal();
+  document.getElementById('mTit').textContent=t;
+  document.getElementById('mTxt').textContent=msg;
+  document.getElementById('mNao').style.display=comCancelar?'inline-block':'none';
+  var ov=document.getElementById('overlay'); ov.classList.add('on');
+  document.getElementById('mSim').onclick=function(){ov.classList.remove('on'); if(onSim)onSim();};
+  document.getElementById('mNao').onclick=function(){ov.classList.remove('on');};
+}
+</script>
+<script>
+/* ===== 15 QUESTÕES — alts[0] é SEMPRE a correta (o embaralhamento cuida do resto) ===== */
+var QUESTOES=[
+{n:1,en:"O ano de 476 d.C. é considerado o marco tradicional do:",
+ alts:[
+ {t:"fim da Antiguidade e do início da Idade Média.",c:"Correta. A queda do Império Romano do Ocidente, em 476, separa esses dois grandes períodos da história."},
+ {t:"início da Antiguidade e do fim da Pré-História.",c:"O início da Antiguidade vem muito antes de 476; essa data marca justamente o FIM da Antiguidade."},
+ {t:"fim da Idade Média e do início da Idade Moderna.",c:"O fim da Idade Média costuma ser marcado por 1453 (tomada de Constantinopla), e não por 476."},
+ {t:"início do Império Romano do Ocidente.",c:"476 é o ano da QUEDA do Império do Ocidente, não do seu início."}]},
+
+{n:2,en:"Em 476, quem tomou o trono do último imperador do Império Romano do Ocidente foi:",
+ alts:[
+ {t:"Odoacro, um chefe militar de origem germânica.",c:"Correta. Odoacro depôs Rômulo Augusto, o último imperador do Ocidente."},
+ {t:"Átila, o líder dos hunos.",c:"Átila comandou os hunos e chegou a invadir Roma no século V, mas não foi ele quem depôs Rômulo Augusto em 476."},
+ {t:"Constantino, o imperador que mudou a capital.",c:"Constantino viveu bem antes: em 330 ele transferiu a capital para Constantinopla."},
+ {t:"Teodósio, que dividiu o Império.",c:"Teodósio dividiu o Império em 395; não foi ele quem tomou o trono em 476."}]},
+
+{n:3,en:"Rômulo Augusto ficou conhecido na história por ter sido:",
+ alts:[
+ {t:"o último imperador do Império Romano do Ocidente.",c:"Correta. Foi ele quem perdeu o trono para Odoacro em 476."},
+ {t:"o chefe germânico que tomou Roma.",c:"O chefe germânico que tomou o trono foi Odoacro. Rômulo Augusto é o imperador que foi deposto."},
+ {t:"o comandante dos hunos na Ásia Central.",c:"O comandante dos hunos era Átila."},
+ {t:"o imperador que transferiu a capital para Bizâncio.",c:"Quem transferiu a capital para Bizâncio (Constantinopla), em 330, foi Constantino."}]},
+
+{n:4,en:"Para os romanos, a palavra 'bárbaro' era usada para se referir a:",
+ alts:[
+ {t:"todo povo que não fazia parte da cultura romana, num sentido pejorativo de 'estrangeiro' ou 'não civilizado'.",c:"Correta. Era um termo depreciativo, mas significava 'de fora da cultura romana', e não 'malvado'."},
+ {t:"apenas os povos violentos e cruéis que atacavam as fronteiras.",c:"Bárbaro não queria dizer 'violento'; queria dizer 'estrangeiro', de fora da cultura romana."},
+ {t:"os próprios cidadãos romanos que viviam nas cidades.",c:"Ao contrário: os bárbaros eram justamente quem NÃO fazia parte da cultura romana."},
+ {t:"os escravos que trabalhavam nas terras dos patrícios.",c:"Escravos eram prisioneiros de guerra ou endividados; 'bárbaro' se referia aos povos de fora da cultura romana."}]},
+
+{n:5,en:"Sobre a relação entre romanos e bárbaros, é correto afirmar que:",
+ alts:[
+ {t:"era instável, com momentos de conflito e de paz, e alguns bárbaros chegaram a receber cidadania romana em troca da defesa das fronteiras.",c:"Correta. A convivência não era só de guerra: houve integração de vários bárbaros ao Império."},
+ {t:"foi sempre pacífica, sem nenhum conflito armado.",c:"Houve, sim, conflitos. A relação era instável: ora paz, ora guerra."},
+ {t:"foi apenas de guerra, sem nenhuma forma de cooperação.",c:"Houve cooperação: alguns bárbaros se integraram e receberam cidadania em troca de defender as fronteiras."},
+ {t:"nunca existiu, pois os dois povos jamais tiveram contato.",c:"Eles tiveram muito contato — inclusive os bárbaros passaram a integrar as tropas romanas."}]},
+
+{n:6,en:"A partir do século II, dois problemas dificultaram a Roma manter o seu exército. São eles:",
+ alts:[
+ {t:"a falta de mão de obra escrava e a queda na arrecadação de impostos.",c:"Correta. Com menos escravos e menos impostos, sustentar as legiões ficou difícil — por isso os bárbaros passaram a integrar as tropas."},
+ {t:"o excesso de prisioneiros de guerra e o aumento dos impostos.",c:"Era o contrário: faltavam prisioneiros (e escravos), e os impostos caíam, não aumentavam."},
+ {t:"a superprodução agrícola e a queda dos preços dos alimentos.",c:"A produção agrícola diminuiu e os preços subiram — o oposto do descrito."},
+ {t:"a proibição da religião cristã e a expulsão dos bárbaros.",c:"Nada disso: o cristianismo se tornaria universal, e os bárbaros foram integrados, não expulsos."}]},
+
+{n:7,en:"Entre os bárbaros, os que exerceram a maior pressão sobre o Império Romano foram os:",
+ alts:[
+ {t:"germânicos, como godos, francos, vikings e vândalos.",c:"Correta. Os germânicos foram os que mais pressionaram o Império."},
+ {t:"egípcios, que viviam às margens do rio Nilo.",c:"Os egípcios não fazem parte dos povos bárbaros que pressionaram Roma nesse período."},
+ {t:"gregos, que habitavam a Península Balcânica.",c:"A cultura grega influenciou Roma, mas não foram os gregos que pressionaram as fronteiras como bárbaros."},
+ {t:"etruscos, que modernizaram a cidade de Roma.",c:"Os etruscos ajudaram a modernizar Roma no início da sua história, e não pressionaram o Império no período da crise."}]},
+
+{n:8,en:"Entre os povos germânicos, a relação de lealdade entre o guerreiro e o seu chefe recebia o nome de:",
+ alts:[
+ {t:"comitatus.",c:"Correta. Era um pacto: o guerreiro era fiel ao chefe, que o protegia e recompensava."},
+ {t:"pax romana.",c:"A Pax Romana foi o longo período de paz do Império Romano, não uma relação entre guerreiro e chefe germânico."},
+ {t:"comitatus era o nome do deus dos vikings.",c:"Não: os vikings acreditavam no Valhala como destino de quem morria com honra. Comitatus é a relação de lealdade guerreiro–chefe."},
+ {t:"ruralização.",c:"Ruralização foi a saída das pessoas das cidades para o campo, no fim do Império."}]},
+
+{n:9,en:"Os hunos eram um povo que:",
+ alts:[
+ {t:"vinha da Ásia Central, era formado por hábeis cavaleiros e guerreiros e foi comandado por Átila.",c:"Correta. Sua expansão empurrou outros povos para dentro do território romano, e no século V eles próprios invadiram Roma."},
+ {t:"vivia na Península Itálica e fundou a cidade de Roma.",c:"Quem fundou Roma, segundo a versão histórica, foi o povo latino. Os hunos vinham da Ásia Central."},
+ {t:"era formado por sacerdotes chamados druidas, considerados sábios.",c:"Os druidas eram sacerdotes dos celtas, não dos hunos."},
+ {t:"praticava a agricultura e acreditava no Valhala.",c:"O Valhala era uma crença dos vikings (germânicos). Os hunos eram cavaleiros e guerreiros da Ásia Central."}]},
+
+{n:10,en:"A expansão dos hunos teve uma consequência importante para o Império Romano porque:",
+ alts:[
+ {t:"empurrou vários outros povos, que migraram para dentro do território romano.",c:"Correta. Funcionou como um efeito dominó: os hunos avançavam, os povos fugiam e acabavam entrando no Império."},
+ {t:"fez com que Roma conquistasse a Ásia Central e ganhasse novos escravos.",c:"Foi o contrário: os hunos avançaram sobre outros povos, e não Roma sobre a Ásia Central."},
+ {t:"aumentou a produção agrícola e o número de prisioneiros de guerra.",c:"A crise era justamente de queda na produção e falta de prisioneiros; os hunos agravaram a instabilidade."},
+ {t:"convenceu os romanos a proibir a entrada de qualquer estrangeiro.",c:"Roma, na verdade, integrou bárbaros ao exército; não conseguiu barrar as migrações."}]},
+
+{n:11,en:"Os druidas, sacerdotes considerados sábios que cuidavam de questões jurídicas, filosóficas e medicinais, pertenciam aos:",
+ alts:[
+ {t:"celtas, povos como os bretões e os gauleses.",c:"Correta. Os celtas foram derrotados pelos romanos, mas suas tradições sobreviveram."},
+ {t:"hunos, povos guerreiros da Ásia Central.",c:"Os hunos eram cavaleiros e guerreiros comandados por Átila, não tinham os druidas."},
+ {t:"vikings, que acreditavam no Valhala.",c:"Os vikings eram um povo germânico; os druidas eram sacerdotes dos celtas."},
+ {t:"etruscos, que se estabeleceram como comerciantes.",c:"Os etruscos eram comerciantes que modernizaram Roma; os druidas eram sacerdotes celtas."}]},
+
+{n:12,en:"A crise da mão de obra escrava em Roma teve como causa principal:",
+ alts:[
+ {t:"a Pax Romana, que reduziu as guerras de conquista e, com isso, o número de prisioneiros de guerra.",c:"Correta. Menos guerras significavam menos prisioneiros, que eram a principal fonte de escravizados."},
+ {t:"o aumento das guerras de conquista, que trouxe prisioneiros demais.",c:"Foi justamente a diminuição das guerras que reduziu o número de escravizados."},
+ {t:"a libertação de todos os escravos por decisão do imperador.",c:"Não houve uma libertação geral; a escassez veio da falta de novos prisioneiros de guerra."},
+ {t:"a chegada dos etruscos, que substituíram os escravos por máquinas.",c:"Isso não aconteceu; a causa foi a redução das guerras de conquista com a Pax Romana."}]},
+
+{n:13,en:"Assinale a alternativa que apresenta corretamente a corrente de acontecimentos da crise econômica romana:",
+ alts:[
+ {t:"Falta de escravos → menos produção agrícola → preços mais altos → menos comércio → queda dos impostos → Império sem recursos para o exército.",c:"Correta. É essa reação em cadeia que enfraqueceu o Império, sobretudo na parte ocidental."},
+ {t:"Muitos escravos → mais produção → preços mais baixos → mais impostos → exército mais forte.",c:"Essa corrente descreve o contrário do que aconteceu: houve FALTA de escravos e queda na produção."},
+ {t:"Mais guerras → mais prisioneiros → economia mais forte → fim das crises.",c:"Com a Pax Romana houve MENOS guerras, e a economia enfraqueceu, não o contrário."},
+ {t:"Aumento do comércio → mais impostos → mais escravos → mais guerras.",c:"O comércio, na verdade, diminuiu, e a arrecadação de impostos caiu."}]},
+
+{n:14,en:"No processo de ruralização, o colono era:",
+ alts:[
+ {t:"o camponês que arrendava terras e dava parte da produção ao dono (patrício) em troca de moradia, proteção e alimento.",c:"Correta. O colono não era propriedade de ninguém — não era escravo, e sim um trabalhador que fazia um acordo com o dono da terra."},
+ {t:"o escravo que era propriedade do patrício e não recebia nada em troca.",c:"O colono NÃO era escravo. Ele arrendava a terra e recebia moradia, proteção e alimento."},
+ {t:"o chefe militar germânico que tomava as terras à força.",c:"Isso não descreve o colono; o colono era um camponês que trabalhava a terra arrendada."},
+ {t:"o comerciante etrusco que vendia produtos nas cidades.",c:"O colono vivia no campo e cultivava a terra; não era um comerciante urbano."}]},
+
+{n:15,en:"Sobre a divisão e a fragmentação do Império Romano, é correto afirmar que:",
+ alts:[
+ {t:"em 330 Constantino transferiu a capital para Bizâncio (Constantinopla) e, em 395, com a morte de Teodósio, o Império foi dividido em Ocidente e Oriente.",c:"Correta. Não confunda: 330 é a mudança da capital; 395 é a divisão em dois impérios."},
+ {t:"em 330 o Império foi dividido em dois e, em 395, Constantino mudou a capital.",c:"As datas estão trocadas: a mudança da capital foi em 330 e a divisão em 395."},
+ {t:"Bizâncio e Roma eram a mesma cidade, apenas com nomes diferentes.",c:"Quem eram a mesma cidade eram Bizâncio e Constantinopla. Roma era a capital do Ocidente."},
+ {t:"a parte oriental do Império caiu junto com a ocidental, em 476.",c:"A parte oriental (Império Bizantino) continuou de pé até o século XV; só o Ocidente caiu em 476."}]}
+];
+
+prepararQuestoes(QUESTOES,4760395);
+
+var KEY='hist6_sj_crise_imperio_romano_quiz_v1';
+var store=criarStore(KEY,{marc:{},corrigido:false,quando:''});
+var S=store.ler();
+var CHAVE_COD='hist6_sj_crise_imperio_romano_quiz_codigo';
+
+function salvar(){S.quando=agoraBR();S.acertos=acertos();S.total=QUESTOES.length;store.gravar(S);carimbo();}
+function carimbo(){document.getElementById('status').textContent='💾 Salvo automaticamente — última vez: '+(S.quando||agoraBR());}
+function acertos(){var c=0;QUESTOES.forEach(function(q){if(S.marc[q.n]===q.certa)c++;});return c;}
+function respondidas(){var c=0;QUESTOES.forEach(function(q){if(S.marc[q.n]!==undefined)c++;});return c;}
+
+function render(){
+  var alvo=document.getElementById('questoes');alvo.innerHTML='';
+  QUESTOES.forEach(function(q){
+    var sec=document.createElement('section');sec.className='questao';
+    var h='<span class="qnum">Questão '+pad2(q.n)+'</span><p class="enunciado">'+q.en+'</p><div class="alts">';
+    q.ordem.forEach(function(a,i){
+      var cls='alt';
+      if(S.corrigido){
+        if(i===q.certa)cls+=' certa';
+        else cls+=' errada';
+      }else if(S.marc[q.n]===i)cls+=' marcada';
+      h+='<button type="button" class="'+cls+'" data-q="'+q.n+'" data-i="'+i+'"'+(S.corrigido?' disabled':'')+'>'+
+         '<span class="letra">'+LETRAS[i]+')</span><span>'+a.t+'</span></button>';
+      if(S.corrigido)h+='<p class="coment'+(i===q.certa?' ok':'')+'">'+(i===q.certa?'✅ ':'▫️ ')+a.c+'</p>';
+    });
+    h+='</div>';
+    if(S.corrigido){
+      var m=S.marc[q.n];
+      h+='<p class="coment" style="padding-left:0;margin-top:12px"><b>'+
+         (m===q.certa?'✅ Você acertou.':(m===undefined?'⬜ Você não respondeu esta questão.':'❌ Você marcou a letra '+LETRAS[m]+'.'))+
+         '</b> A resposta certa é a letra <b>'+LETRAS[q.certa]+'</b>.</p>';
+    }
+    sec.innerHTML=h;alvo.appendChild(sec);
+  });
+  document.querySelectorAll('.alt').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(S.corrigido)return;
+      S.marc[parseInt(b.dataset.q,10)]=parseInt(b.dataset.i,10);
+      salvar();render();
+    });
+  });
+  progresso();
+  document.getElementById('btCorrigir').style.display=S.corrigido?'none':'inline-block';
+  if(S.corrigido)mostrarResultado();else document.getElementById('resultado').innerHTML='';
+}
+
+function progresso(){
+  var r=respondidas();
+  document.getElementById('barra').style.width=(r/QUESTOES.length*100)+'%';
+  document.getElementById('txtProg').textContent=r+' de '+QUESTOES.length+' respondidas'+(S.corrigido?' — quiz corrigido.':'.');
+}
+
+function mostrarResultado(){
+  var ac=acertos(),tot=QUESTOES.length,pc=Math.round(ac/tot*100);
+  var cod=gerarCodigo('MED',ac,CHAVE_COD);
+  var msg = pc>=80?'Excelente! Você domina a queda de Roma.':pc>=60?'Bom trabalho. Volte ao Resumo nos assuntos que escaparam.':'Vale reler o Resumo com calma e refazer o quiz depois.';
+  document.getElementById('resultado').innerHTML=
+    '<div class="placar"><p style="margin:0 0 6px;color:var(--texto2)">Sua nota</p>'+
+    '<p class="nota">'+ac+' / '+tot+'</p>'+
+    '<p style="margin:8px 0 0">'+pc+'% de acerto. '+msg+'</p>'+
+    '<p style="margin:16px 0 4px"><b>Código de liberação do gabarito:</b></p>'+
+    '<p class="codigo">'+cod+'</p>'+
+    '<p style="font-size:14.5px;color:var(--texto2);margin:6px 0 0">Anote este código: ele abre o gabarito comentado aqui embaixo e também o Relatório para os pais, na página inicial.</p>'+
+    '</div>'+
+    '<div class="questao" id="portao"><p class="enunciado">🔐 Gabarito comentado</p>'+
+    '<p style="font-size:15.5px;color:var(--texto2)">Digite o código acima para liberar os comentários de cada alternativa.</p>'+
+    '<div class="entrada-cod"><input type="text" id="cod" placeholder="MED-00-XX" autocomplete="off">'+
+    '<button class="ocre" id="btAbrir">Abrir gabarito</button></div>'+
+    '<p class="aviso" id="avCod"></p></div>';
+  document.getElementById('btAbrir').onclick=function(){
+    var v=(document.getElementById('cod').value||'').trim().toUpperCase();
+    if(v===cod){S.gabarito=true;salvar();render();}
+    else{document.getElementById('avCod').textContent='⚠️ Código incorreto. Confira as letras e os números — o código é o que aparece logo acima.';}
+  };
+  if(!S.gabarito){
+    document.querySelectorAll('.coment').forEach(function(p){p.style.display='none';});
+  }else{
+    var pt=document.getElementById('portao');
+    if(pt)pt.innerHTML='<p class="enunciado">🔓 Gabarito comentado liberado</p><p style="font-size:15.5px;color:var(--texto2);margin:0">Os comentários de cada alternativa estão em cada questão acima: a correta em verde, as demais com a explicação de por que não servem.</p>';
+  }
+}
+
+document.getElementById('btCorrigir').onclick=function(){
+  if(respondidas()<QUESTOES.length){
+    aviso('Faltam questões','Você ainda não marcou todas as 15 questões. Responda todas antes de corrigir — chutar também vale, o importante é fechar o quiz inteiro.');
+    return;
+  }
+  S.corrigido=true;salvar();render();
+  document.getElementById('resultado').scrollIntoView({behavior:'smooth',block:'start'});
+};
+
+document.getElementById('btExportar').onclick=function(){
+  var d={marc:S.marc,corrigido:S.corrigido,quando:S.quando,acertos:acertos(),total:QUESTOES.length,gabarito:!!S.gabarito};
+  var blob=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='quiz-historia6-crise-imperio-romano.json';a.click();
+};
+document.getElementById('btImportar').onclick=function(){document.getElementById('arquivo').click();};
+document.getElementById('arquivo').onchange=function(e){
+  var f=e.target.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{var d=JSON.parse(r.result);S.marc=d.marc||{};S.corrigido=!!d.corrigido;S.gabarito=!!d.gabarito;salvar();render();
+      aviso('Pronto','Seu progresso foi importado com sucesso.');}
+    catch(err){aviso('Ops','Não consegui ler esse arquivo. Ele precisa ser o .json exportado por este material.');}
+  };
+  r.readAsText(f);
+};
+document.getElementById('btZerar').onclick=function(){
+  aviso('Zerar tudo?','Isso apaga todas as respostas deste quiz e o código de liberação. Não dá para desfazer.',function(){
+    store.limpar();try{localStorage.removeItem(CHAVE_COD);}catch(e){}
+    S={marc:{},corrigido:false,quando:''};render();carimbo();
+  },true);
+};
+
+render();carimbo();
+</script>
+</body>
+</html>

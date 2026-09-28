@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resumo — História 6º ano | Rachaduras do Império</title>
+<style>
+/* ===== RACHADURAS DO IMPÉRIO — tema do kit de História 6º ano ===== */
+:root{
+  --fundo:#14110d; --fundo2:#1e1912; --painel:#28211a; --painel2:#332a20;
+  --linha:#4d4132; --ocre:#c69a44; --ocre2:#e6c274;
+  --ciano:#4bb39e; --ambar:#e8b23a; --verde:#4a9d6a; --vermelho:#d0564c;
+  --texto:#f0e9df; --texto2:#b6a894;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--fundo);color:var(--texto);
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,sans-serif;
+  font-size:18px;line-height:1.65;
+  background-image:
+    linear-gradient(180deg,#14110d 0%,#1a1610 45%,#100d09 100%),
+    repeating-linear-gradient(58deg,rgba(198,154,68,.03) 0 1px,transparent 1px 11px);
+  background-attachment:fixed;
+}
+.wrap{max-width:980px;margin:0 auto;padding:0 18px 80px}
+header.topo{padding:26px 0 14px;border-bottom:3px solid var(--ocre);position:relative}
+header.topo::after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:6px;
+  background:repeating-linear-gradient(90deg,var(--ocre) 0 14px,transparent 14px 22px);opacity:.45}
+.titulo{font-size:clamp(26px,5.6vw,44px);line-height:1.1;margin:0;font-weight:800;letter-spacing:-.01em}
+.titulo .sub{display:block;font-size:.36em;font-weight:500;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--ocre2);margin-bottom:10px}
+.faixa{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:14px;font-size:13px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--texto2)}
+.selo{display:inline-block;background:var(--ambar);color:#2b1d00;font-weight:700;
+  font-size:12.5px;letter-spacing:.14em;padding:6px 13px;border-radius:3px;text-transform:uppercase;margin-top:16px}
+nav.abas{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 6px}
+nav.abas a{font-size:13.5px;letter-spacing:.04em;text-decoration:none;color:var(--texto);
+  border:1px solid var(--linha);background:var(--painel);padding:9px 14px;border-radius:4px;transition:.15s}
+nav.abas a.atual{background:var(--ciano);color:#062822;border-color:var(--ciano);font-weight:700}
+nav.abas a:hover{background:var(--painel2);border-color:var(--ciano)}
+.painel{border:1px solid var(--linha);background:var(--painel);padding:12px 14px;margin:18px 0 24px;
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border-radius:5px}
+.painel .status{font-size:13px;color:var(--texto2)}
+.painel .btns{display:flex;gap:7px;flex-wrap:wrap}
+button{font-family:inherit;font-size:13.5px;cursor:pointer;border:1px solid var(--linha);
+  background:var(--painel2);color:var(--texto);padding:9px 14px;border-radius:4px;transition:.15s}
+button:hover{background:var(--linha)}
+button.principal{background:var(--verde);color:#04180d;border-color:var(--verde);font-weight:700}
+button.principal:hover{background:#5bb87e}
+.progresso{margin:0 0 26px}
+.barra{height:15px;border:1px solid var(--linha);background:var(--fundo2);border-radius:8px;overflow:hidden}
+.barra i{display:block;height:100%;width:0;transition:width .45s;background:linear-gradient(90deg,var(--vermelho),var(--ocre))}
+.progresso p{font-size:13px;margin:7px 0 0;color:var(--texto2)}
+h2{font-size:26px;line-height:1.25;margin:0}
+h3{font-size:20px;margin:0 0 10px}
+p{margin:0 0 14px}
+a{color:var(--ciano)}
+.secao-tit{border-bottom:2px solid var(--ocre);margin:36px 0 18px;padding-bottom:8px;font-size:25px;color:var(--ocre2)}
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px;margin:0 0 22px}
+.card{border:1px solid var(--linha);background:var(--fundo2);border-radius:6px;padding:16px 18px}
+.card h3{color:var(--ocre2);font-size:18px;margin:0 0 9px}
+.card p{font-size:15.5px;margin:0 0 9px}
+.card p:last-child{margin:0}
+.flip{perspective:1100px;min-height:180px;cursor:pointer}
+.flip .inner{position:relative;width:100%;height:180px;transition:transform .55s;transform-style:preserve-3d}
+.flip.virado .inner{transform:rotateY(180deg)}
+.flip .face{position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--linha);
+  border-radius:6px;padding:15px 17px;display:flex;flex-direction:column;justify-content:center;overflow:auto}
+.flip .frente{background:var(--painel);align-items:center;text-align:center}
+.flip .frente h3{color:var(--ciano);margin:0 0 6px;font-size:19px}
+.flip .frente .dica{font-size:13px;color:var(--texto2)}
+.flip .verso{background:linear-gradient(150deg,#2a2013,#332812);transform:rotateY(180deg);font-size:15px;line-height:1.5}
+.postit{background:linear-gradient(160deg,#f6d97a,#e9c455);color:#332200;padding:15px 17px;border-radius:3px;
+  box-shadow:0 5px 14px rgba(0,0,0,.4);transform:rotate(-.7deg);margin:0 0 16px;font-size:16px;line-height:1.55}
+.postit b{color:#5a3b00}
+.postit .tit{display:block;font-weight:800;text-transform:uppercase;letter-spacing:.09em;font-size:12.5px;margin-bottom:7px}
+.alerta{border-left:5px solid var(--vermelho);background:rgba(208,86,76,.1);padding:12px 16px;border-radius:0 5px 5px 0;margin:0 0 16px}
+.alerta b{color:var(--vermelho)}
+.destaque{background:rgba(232,178,58,.22);color:#ffdc8a;padding:1px 5px;border-radius:3px;font-weight:600}
+.tabela-wrap{overflow-x:auto;margin:0 0 18px}
+table.tb{width:100%;border-collapse:collapse;background:var(--fundo2);font-size:15.5px;min-width:480px}
+table.tb th,table.tb td{border:1px solid var(--linha);padding:9px 11px;text-align:left;vertical-align:top}
+table.tb th{background:var(--painel);font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ocre2)}
+.glossario dt{font-weight:700;color:var(--ciano);margin-top:12px}
+.glossario dd{margin:3px 0 0 0;font-size:15.5px;color:var(--texto2)}
+/* linha do tempo */
+.linha{position:relative;margin:0 0 26px;padding:6px 0 6px 0}
+.tempo{display:flex;flex-direction:column;gap:0;border-left:3px solid var(--ocre);margin-left:10px}
+.marco{position:relative;padding:8px 0 18px 24px}
+.marco::before{content:"";position:absolute;left:-9px;top:12px;width:15px;height:15px;border-radius:50%;
+  background:var(--ocre);border:3px solid var(--fundo)}
+.marco .data{font-weight:800;color:var(--ocre2);font-size:17px}
+.marco .txt{font-size:15.5px;color:var(--texto)}
+.marco.quebra::before{background:var(--vermelho)}
+.marco.quebra .data{color:#e0685c}
+.overlay{position:fixed;inset:0;background:rgba(8,6,4,.8);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.overlay.on{display:flex}
+.modal{background:var(--painel);border:2px solid var(--ocre);max-width:440px;width:100%;padding:23px;border-radius:7px}
+.modal h3{margin:0 0 10px;font-size:21px;color:var(--ocre2)}
+.modal .acoes{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.rodape{border-top:3px solid var(--ocre);margin-top:34px;padding-top:17px;display:flex;flex-wrap:wrap;
+  gap:12px;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--texto2)}
+.rodape a{color:var(--texto);text-decoration:none;border:1px solid var(--linha);background:var(--painel);
+  padding:10px 16px;border-radius:4px;letter-spacing:.05em}
+.rodape a:hover{background:var(--ciano);color:#062822;border-color:var(--ciano)}
+@media(max-width:620px){body{font-size:17px}.wrap{padding:0 14px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="topo">
+  <h1 class="titulo"><span class="sub">Rachaduras do Império</span>Resumo Interativo</h1>
+  <div class="faixa">
+    <span>Colégio São José</span>
+    <span>6º ano · História</span>
+    <span>Crise e fim do Império Romano</span>
+    <span>Livro pp. 284-290 + caderno</span>
+  </div>
+  <p style="margin:0"><span class="selo">Rachadura 3 de 4 — fechando as lacunas</span></p>
+</header>
+
+<nav class="abas">
+  <a href="leitura-guiada.html">📖 1. Leitura Guiada</a>
+  <a href="quiz.html">🎯 2. Quiz</a>
+  <a href="resumo.html" class="atual">🗺️ 3. Resumo</a>
+  <a href="simulado.html">📝 4. Simulado</a>
+  <a href="index.html">🏠 Início</a>
+</nav>
+
+<div class="painel">
+  <div class="status" id="status">Carregando…</div>
+  <div class="btns">
+    <button id="btExportar">📥 Exportar</button>
+    <button id="btZerar">🗑️ Zerar tudo</button>
+  </div>
+</div>
+
+<div class="progresso">
+  <div class="barra"><i id="barra"></i></div>
+  <p id="txtProg">Você já percorreu 0% do resumo.</p>
+</div>
+
+<!-- ===== LINHA DO TEMPO ===== -->
+<h2 class="secao-tit">🕰️ A linha do tempo — não erre a ordem</h2>
+<p>Guarde as datas nesta ordem. As duas mais importantes da prova estão em <span style="color:#e0685c">vermelho</span>.</p>
+<div class="linha">
+ <div class="tempo">
+  <div class="marco"><div class="data">Pré-História</div><div class="txt">Antes da escrita.</div></div>
+  <div class="marco"><div class="data">Idade Antiga (Antiguidade)</div><div class="txt">O tempo do Império Romano.</div></div>
+  <div class="marco"><div class="data">330</div><div class="txt">Constantino transfere a capital para <b>Bizâncio</b>, que passa a se chamar <b>Constantinopla</b>.</div></div>
+  <div class="marco"><div class="data">395</div><div class="txt">Morte de <b>Teodósio</b>: o Império é <b>dividido</b> em Ocidente (Roma) e Oriente (Constantinopla).</div></div>
+  <div class="marco quebra"><div class="data">476 — Queda do Império Romano do Ocidente</div><div class="txt"><b>Odoacro</b> depõe <b>Rômulo Augusto</b>. Fim da Antiguidade, início da Idade Média.</div></div>
+  <div class="marco quebra"><div class="data">1453 — Tomada de Constantinopla</div><div class="txt">Fim do Império Romano do Oriente (Bizantino), que durou até o século XV.</div></div>
+  <div class="marco"><div class="data">1789</div><div class="txt">Revolução Francesa (bem depois — só para você lembrar que 476 vem antes).</div></div>
+ </div>
+</div>
+
+<!-- ===== BLOCO 1 — 476 ===== -->
+<h2 class="secao-tit">💥 Bloco A — A grande rachadura de 476</h2>
+<div class="grade">
+  <div class="card">
+    <h3>O marco de 476</h3>
+    <p>A partir do <b>século III</b>, o Império entrou em crise e foi se fragmentando.</p>
+    <p><b>476</b> = marco tradicional do <b>fim da Antiguidade</b> e <b>início da Idade Média</b>.</p>
+    <p>Caiu o Império do <b>Ocidente</b>. O do Oriente continuou.</p>
+  </div>
+  <div class="card">
+    <h3>Quem é quem</h3>
+    <p><b>Odoacro</b> — chefe militar <b>germânico</b> que tomou o trono.</p>
+    <p><b>Rômulo Augusto</b> — o <b>último imperador</b> do Ocidente, deposto por Odoacro.</p>
+  </div>
+  <div class="card">
+    <h3>Roma antes da queda (caderno)</h3>
+    <p>Ficava na <b>Península Itálica</b>: Alpes ao norte, Adriático a leste, Tirreno a oeste, Mediterrâneo ao sul.</p>
+    <p>Sociedade: <b>patrícios</b> (nobres), <b>plebeus</b> (maioria), <b>clientes</b> e <b>escravos</b> (prisioneiros de guerra ou endividados).</p>
+    <p>Religião <b>politeísta</b>, com deuses parecidos com os gregos, de nomes diferentes.</p>
+  </div>
+</div>
+<div class="alerta"><b>⚠️ Pegadinha:</b> não troque Odoacro (quem depôs) com Rômulo Augusto (o deposto). E 476 é o fim do Império do <b>Ocidente</b>, não do Império inteiro.</div>
+
+<!-- ===== BLOCO 2 — BÁRBAROS ===== -->
+<h2 class="secao-tit">🛡️ Bloco B — "Se não for romano, é bárbaro"</h2>
+<div class="grade">
+  <div class="card">
+    <h3>O que era "bárbaro"</h3>
+    <p>Todo povo que <b>não fazia parte da cultura romana</b>: "estrangeiro", "não civilizado".</p>
+    <p>Era um termo <b>pejorativo</b> — mas <b>não</b> queria dizer "malvado".</p>
+  </div>
+  <div class="card">
+    <h3>Relação instável</h3>
+    <p>Teve <b>conflito</b> e teve <b>paz</b>. Alguns bárbaros se <b>integraram</b> ao Império.</p>
+    <p>Receberam <b>cidadania romana</b> em troca de <b>defender as fronteiras</b>.</p>
+  </div>
+  <div class="card">
+    <h3>Por que aceitar bárbaros?</h3>
+    <p>A partir do <b>século II</b>: faltava <b>mão de obra escrava</b> e caía a <b>arrecadação de impostos</b>.</p>
+    <p>Sem gente e sem dinheiro, ficou difícil manter o exército → os <b>bárbaros entraram nas tropas</b>.</p>
+  </div>
+</div>
+
+<h3 style="margin:26px 0 12px;color:var(--ciano)">👑 Os povos — clique para virar a carta</h3>
+<div class="grade">
+  <div class="card flip"><div class="inner">
+    <div class="face frente"><h3>GERMÂNICOS</h3><span class="dica">clique para ver</span></div>
+    <div class="face verso">Fizeram a <b>maior pressão</b> sobre o Império. Povos: godos, anglo-saxões, francos, vikings, vândalos. Faziam <b>agricultura, pecuária e metalurgia (aço)</b>. Lealdade guerreiro–chefe = <b>comitatus</b>. Politeístas (vikings → <b>Valhala</b>). Mulheres com <b>mais liberdade</b> que em Roma.</div>
+  </div></div>
+  <div class="card flip"><div class="inner">
+    <div class="face frente"><h3>HUNOS</h3><span class="dica">clique para ver</span></div>
+    <div class="face verso">Da <b>Ásia Central</b> (atual Mongólia). Hábeis <b>cavaleiros e guerreiros</b> (lança, arco e flecha), comandados por <b>Átila</b>. Sua expansão <b>empurrou outros povos</b> para dentro de Roma. No <b>século V</b> invadiram Roma.</div>
+  </div></div>
+  <div class="card flip"><div class="inner">
+    <div class="face frente"><h3>CELTAS</h3><span class="dica">clique para ver</span></div>
+    <div class="face verso">Povos como <b>bretões</b> e <b>gauleses</b>. Sacerdotes = <b>druidas</b>, considerados sábios (questões jurídicas, filosóficas e medicinais). Foram <b>derrotados pelos romanos</b>, mas suas <b>tradições sobreviveram</b>.</div>
+  </div></div>
+</div>
+<div class="alerta"><b>⚠️ Pegadinha:</b> <b>comitatus</b> é a lealdade guerreiro–chefe (germânicos); <b>Valhala</b> é a crença dos vikings; <b>druidas</b> são os sacerdotes dos celtas. Não misture os três.</div>
+
+<!-- ===== BLOCO 3 — CRISE ECONÔMICA ===== -->
+<h2 class="secao-tit">💰 Bloco C — A crise econômica (a mais cobrada)</h2>
+<div class="card" style="margin:0 0 18px">
+  <h3>🔗 A corrente da crise — decore a ordem</h3>
+  <p style="font-size:16.5px;line-height:2">
+  <b>Pax Romana</b> (paz) → menos guerras → <b>menos prisioneiros</b> → <span class="destaque">falta de escravos</span> →
+  a produção agrícola <b>diminui</b> → os preços <b>sobem</b> → menos comércio → <b>menos impostos</b> →
+  Império sem dinheiro para o <b>exército</b> → descontentamento → instabilidade → <b>troca constante de imperadores</b>.</p>
+</div>
+<div class="grade">
+  <div class="card">
+    <h3>De onde vinham os escravos</h3>
+    <p>Principalmente dos <b>prisioneiros de guerra</b>.</p>
+    <p>O trabalho escravo era <b>essencial</b> para a economia agrícola de Roma.</p>
+  </div>
+  <div class="card">
+    <h3>Por que a paz virou crise</h3>
+    <p>Com a <b>Pax Romana</b> houve <b>menos guerras de conquista</b>.</p>
+    <p>Menos guerra = menos prisioneiro = <b>menos escravo</b> para trabalhar.</p>
+  </div>
+  <div class="card">
+    <h3>Quem sofreu mais</h3>
+    <p>A parte <b>ocidental</b>, que <b>dependia mais</b> do trabalho escravo.</p>
+    <p>A parte <b>oriental</b> dependia menos e não teve crise tão intensa.</p>
+  </div>
+</div>
+<div class="alerta"><b>⚠️ Pegadinha:</b> a crise dos escravos veio da <b>PAZ</b> (menos guerras), e não da guerra. Muita gente erra isso.</div>
+
+<!-- ===== BLOCO 4 — RURALIZAÇÃO ===== -->
+<h2 class="secao-tit">🌾 Bloco D — Voltando para o campo (ruralização)</h2>
+<div class="grade">
+  <div class="card">
+    <h3>O que foi a ruralização</h3>
+    <p>A população <b>saiu das cidades</b> e foi morar no <b>campo</b>.</p>
+    <p>As cidades <b>perderam</b> importância econômica, política e cultural.</p>
+  </div>
+  <div class="card">
+    <h3>O colono</h3>
+    <p><b>Camponês</b> que <b>arrendava</b> parte da terra do patrício.</p>
+    <p>Dava <b>parte da produção</b> em troca de <b>moradia, proteção e alimento</b>.</p>
+    <p><b>Não era escravo</b> — não era propriedade de ninguém.</p>
+  </div>
+  <div class="card">
+    <h3>As vilas</h3>
+    <p>Propriedades rurais cercadas por <b>muralhas</b>, para proteger de invasores e saques.</p>
+    <p>O imperador já não conseguia proteger nem abastecer os habitantes.</p>
+  </div>
+</div>
+<div class="alerta"><b>⚠️ Pegadinha:</b> <b>colono ≠ escravo</b>. E ruralização é a cidade <b>esvaziando</b> (indo para o campo), não crescendo.</div>
+
+<!-- ===== BLOCO 5 — FRAGMENTAÇÃO E HERANÇA ===== -->
+<h2 class="secao-tit">🏛️ Bloco E — Império partido, herança inteira</h2>
+<div class="tabela-wrap">
+<table class="tb">
+  <thead><tr><th>Data</th><th>O que aconteceu</th></tr></thead>
+  <tbody>
+    <tr><td><b>330</b></td><td>Constantino leva a capital para <b>Bizâncio</b> = <b>Constantinopla</b> (Oriente mais próspero e protegido).</td></tr>
+    <tr><td><b>395</b></td><td>Morte de <b>Teodósio</b> → Império <b>dividido</b>: Ocidente (capital Roma) e Oriente (capital Constantinopla).</td></tr>
+    <tr><td><b>476</b></td><td>Odoacro toma Roma → fim do Império do <b>Ocidente</b>.</td></tr>
+    <tr><td><b>século XV</b></td><td>O Oriente (Império <b>Bizantino</b>) resiste até 1453.</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="grade">
+  <div class="card">
+    <h3>A herança romana</h3>
+    <p>O <b>cristianismo</b>, com o controle da Igreja, tornou-se <b>universal</b> → <b>Igreja Católica</b> ("católica" = universal).</p>
+    <p>A civilização clássica greco-romana influencia o mundo <b>até hoje</b> (Renascimento, revoluções americana e francesa).</p>
+  </div>
+  <div class="card">
+    <h3>Bizâncio = Constantinopla</h3>
+    <p>São a <b>mesma cidade</b> — só mudou o nome quando virou capital.</p>
+    <p><b>Roma</b> era a capital do Ocidente; <b>Constantinopla</b>, a do Oriente.</p>
+  </div>
+</div>
+<div class="postit">
+  <span class="tit">📌 Dica de prova</span>
+  Só duas datas com "3": <b>330</b> = muda a capital (Constantinopla). <b>395</b> = divide o Império em dois. Não troque uma pela outra!
+</div>
+
+<!-- ===== ERROS COMUNS ===== -->
+<h2 class="secao-tit">🚨 Os erros mais comuns</h2>
+<div class="grade">
+  <div class="card"><h3>Odoacro × Rômulo Augusto</h3><p>Odoacro depôs; Rômulo Augusto foi deposto.</p></div>
+  <div class="card"><h3>476 = só o Ocidente</h3><p>O Oriente (Bizantino) durou até 1453.</p></div>
+  <div class="card"><h3>Bárbaro = de fora, não malvado</h3><p>Significava "estrangeiro / não civilizado".</p></div>
+  <div class="card"><h3>Crise = paz, não guerra</h3><p>Pax Romana → menos guerra → menos escravo.</p></div>
+  <div class="card"><h3>Colono não é escravo</h3><p>Ele arrendava terra e não era posse de ninguém.</p></div>
+  <div class="card"><h3>330 ≠ 395</h3><p>330 muda a capital; 395 divide o Império.</p></div>
+</div>
+
+<!-- ===== GLOSSÁRIO ===== -->
+<h2 class="secao-tit">📖 Glossário</h2>
+<dl class="glossario">
+  <dt>Fragmentação</dt><dd>Processo em que o Império foi se quebrando em pedaços.</dd>
+  <dt>Bárbaro</dt><dd>Para os romanos, todo povo de fora da cultura romana (termo pejorativo).</dd>
+  <dt>Comitatus</dt><dd>Relação de lealdade entre o guerreiro germânico e o seu chefe.</dd>
+  <dt>Valhala</dt><dd>Lugar para onde os vikings acreditavam ir quem morresse com honra em batalha.</dd>
+  <dt>Druidas</dt><dd>Sacerdotes dos celtas, considerados sábios.</dd>
+  <dt>Pax Romana</dt><dd>Longo período de paz do Império, com poucas guerras de conquista.</dd>
+  <dt>Ruralização</dt><dd>Saída da população das cidades para o campo.</dd>
+  <dt>Colono</dt><dd>Camponês que arrendava terra e dava parte da produção ao dono, em troca de moradia, proteção e alimento.</dd>
+  <dt>Igreja Católica</dt><dd>"Católica" quer dizer "universal": o cristianismo controlado pela Igreja e espalhado para todos.</dd>
+  <dt>Império Bizantino</dt><dd>Nome do Império Romano do Oriente, que durou até o século XV.</dd>
+</dl>
+
+<div style="text-align:center;margin:30px 0 6px">
+  <button class="principal" id="btSimulado" style="font-size:17px;padding:14px 26px">📝 Pronto! Ir para o Simulado →</button>
+</div>
+
+<div class="rodape">
+  <span>Próximo material da sequência →</span>
+  <a href="simulado.html">📝 Ir para o Simulado</a>
+</div>
+
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h3 id="mTit">Aviso</h3>
+    <p id="mTxt"></p>
+    <div class="acoes">
+      <button id="mNao" style="display:none">Cancelar</button>
+      <button class="principal" id="mSim">Entendi</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function criarStore(KEY,vazio){
+  var mem=JSON.parse(JSON.stringify(vazio));
+  return {
+    ler:function(){try{return JSON.parse(localStorage.getItem(KEY)||'null')||JSON.parse(JSON.stringify(vazio));}catch(e){return mem;}},
+    gravar:function(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){mem=s;}},
+    limpar:function(){try{localStorage.removeItem(KEY);}catch(e){}mem=JSON.parse(JSON.stringify(vazio));}
+  };
+}
+function agoraBR(){var d=new Date();return d.toLocaleDateString('pt-BR')+' às '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});}
+function aviso(t,msg,onSim,comCancelar){
+  document.getElementById('mTit').textContent=t;
+  document.getElementById('mTxt').textContent=msg;
+  document.getElementById('mNao').style.display=comCancelar?'inline-block':'none';
+  var ov=document.getElementById('overlay'); ov.classList.add('on');
+  document.getElementById('mSim').onclick=function(){ov.classList.remove('on'); if(onSim)onSim();};
+  document.getElementById('mNao').onclick=function(){ov.classList.remove('on');};
+}
+
+var KEY='hist6_sj_crise_imperio_romano_resumo_v1';
+var store=criarStore(KEY,{rolagem:0,virados:{},quando:''});
+var S=store.ler();
+
+function carimbo(){document.getElementById('status').textContent='💾 Salvo automaticamente — última vez: '+(S.quando||agoraBR());}
+function salvar(){S.quando=agoraBR();store.gravar(S);carimbo();}
+
+document.querySelectorAll('.flip').forEach(function(f,i){
+  if(S.virados[i])f.classList.add('virado');
+  f.addEventListener('click',function(){
+    f.classList.toggle('virado');
+    S.virados[i]=f.classList.contains('virado');
+    salvar();
+  });
+});
+
+function marcarRolagem(){
+  var sh=document.documentElement.scrollHeight;
+  if(sh<=0)return;
+  var p=Math.min(100,Math.round((window.scrollY+window.innerHeight)/sh*100));
+  if(p>(S.rolagem||0)){S.rolagem=p;salvar();}
+  document.getElementById('barra').style.width=(S.rolagem||0)+'%';
+  document.getElementById('txtProg').textContent='Você já percorreu '+(S.rolagem||0)+'% do resumo'+((S.rolagem||0)>=95?' — resumo inteiro! 🎉':'.');
+}
+window.addEventListener('scroll',marcarRolagem);
+window.addEventListener('resize',marcarRolagem);
+
+document.getElementById('btSimulado').onclick=function(){location.href='simulado.html';};
+
+document.getElementById('btExportar').onclick=function(){
+  var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='resumo-historia6-crise-imperio-romano.json';a.click();
+};
+document.getElementById('btZerar').onclick=function(){
+  aviso('Zerar tudo?','Isso apaga as cartas viradas e o quanto você já percorreu do resumo. Não dá para desfazer.',function(){
+    store.limpar();S={rolagem:0,virados:{},quando:''};
+    document.querySelectorAll('.flip').forEach(function(f){f.classList.remove('virado');});
+    marcarRolagem();carimbo();
+  },true);
+};
+
+marcarRolagem();carimbo();
+</script>
+</body>
+</html>
